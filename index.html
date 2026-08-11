@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dinesh Gurajada — Platform / SRE Engineer</title>
+<title>Dinesh Gurajada — Senior DevOps Engineer</title>
 <meta name="description" content="Platform and Site Reliability Engineer specialising in Kubernetes, AWS and large-scale production migrations.">
 <meta property="og:title" content="Dinesh Gurajada — Platform / SRE Engineer">
 <meta property="og:description" content="Platform and Site Reliability Engineer specialising in Kubernetes, AWS and large-scale production migrations.">
@@ -104,8 +104,8 @@
   <h2>Impact</h2>
   <div class="metrics">
     <div class="metric">
-      <span class="n">Zero</span>
-      <span class="l">Dropped requests per deployment, after a fix shipped into the shared chart</span>
+      <span class="n">113</span>
+      <span class="l">Services migrated from a data centre onto managed Kubernetes</span>
     </div>
     <div class="metric">
       <span class="n">15</span>
@@ -184,11 +184,11 @@
     <h3>Zero-Downtime Deploys, Fleet-Wide</h3>
     <p class="meta">One fix in the shared chart · 2026 · every consuming team</p>
     <p>
-      Traced client errors appearing invisibly on every rollout for months to a default that retired
-      old pods seconds after new ones went ready, cutting off requests still in flight. Fixed it in
-      the shared chart rather than service by service, so every consuming team stopped dropping
-      requests at once. The same pass caught a disruption budget and a zone-spread rule that had
-      never taken effect. Verified by load testing, not by the absence of alerts.
+      Rollout defaults retire old pods on a fixed delay, which can cut off requests still in flight —
+      a failure mode that never trips an alert, so it goes unnoticed. I measured the real shutdown
+      timing per service and set it in the shared chart rather than service by service, so every
+      consuming team inherited it, then hardened two related resilience settings in the same pass.
+      Confirmed by controlled load testing rather than by the absence of alerts.
     </p>
     <div class="stack">
       <span>Argo Rollouts</span><span>Helm</span><span>Kubernetes probes</span>
@@ -220,9 +220,9 @@
     <p class="meta">Infrastructure lead · 2024–2026 · multiple clusters, 15+ services</p>
     <p>
       Replaced a third-party node provisioner with the CNCF-standard autoscaler across the fleet,
-      staged over five months with production left to soak. The driver wasn't cost: the vendor had
-      already broken a production cluster upgrade once, and taking it out of the critical path
-      removed that risk for good. Node pools designed explicitly — interruptible capacity for general
+      staged over five months with production left to soak. The driver wasn't cost: it took a
+      third-party dependency out of the cluster-provisioning critical path in favour of a
+      CNCF-standard tool. Node pools designed explicitly — interruptible capacity for general
       workloads, reserved for critical ones — alongside the managed Kubernetes upgrades these
       clusters rode on, run under change control including for a vertical outside my own team.
     </p>
