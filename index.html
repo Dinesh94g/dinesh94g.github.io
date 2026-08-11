@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dinesh Gurajada — Platform / SRE Engineer</title>
+<meta name="description" content="Platform and Site Reliability Engineer specialising in Kubernetes, AWS and large-scale production migrations.">
+<meta property="og:title" content="Dinesh Gurajada — Platform / SRE Engineer">
+<meta property="og:description" content="Platform and Site Reliability Engineer specialising in Kubernetes, AWS and large-scale production migrations.">
+<meta property="og:type" content="profile">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⎈</text></svg>">
+<style>
+  :root{
+    --bg:#ffffff; --fg:#16191d; --muted:#5b636d; --line:#e3e6ea;
+    --accent:#1f5fa8; --chip-bg:#f2f5f8; --card:#fafbfc;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1216; --fg:#e8ebee; --muted:#9aa3ad; --line:#252b32;
+      --accent:#79aee8; --chip-bg:#1a1f25; --card:#141a20;
+    }
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; background:var(--bg); color:var(--fg);
+    font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    font-feature-settings:"kern";
+  }
+  .wrap{max-width:760px; margin:0 auto; padding:0 24px}
+  a{color:var(--accent); text-decoration:none}
+  a:hover{text-decoration:underline}
+  a:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:3px}
+
+  header{padding:72px 0 40px}
+  h1{font-size:2.15rem; line-height:1.15; margin:0 0 6px; letter-spacing:-.02em}
+  .role{font-size:1.1rem; color:var(--muted); margin:0 0 18px}
+  .links{display:flex; flex-wrap:wrap; gap:18px; font-size:.94rem}
+
+  section{padding:34px 0; border-top:1px solid var(--line)}
+  h2{
+    font-size:.8rem; text-transform:uppercase; letter-spacing:.09em;
+    color:var(--muted); margin:0 0 18px; font-weight:600;
+  }
+  p{margin:0 0 14px}
+  .lead{font-size:1.06rem}
+
+  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px}
+  .metric{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px}
+  .metric .n{display:block; font-size:1.5rem; font-weight:650; letter-spacing:-.01em}
+  .metric .l{display:block; font-size:.86rem; color:var(--muted); margin-top:4px; line-height:1.45}
+
+  .project{margin-bottom:28px}
+  .project:last-child{margin-bottom:0}
+  .project h3{font-size:1.06rem; margin:0 0 3px; font-weight:640}
+  .meta{font-size:.85rem; color:var(--muted); margin:0 0 9px}
+  .project p{margin:0 0 10px}
+  .stack{display:flex; flex-wrap:wrap; gap:6px}
+  .stack span{
+    font-size:.76rem; background:var(--chip-bg); border:1px solid var(--line);
+    color:var(--muted); padding:2px 9px; border-radius:99px; white-space:nowrap;
+  }
+
+  .skills dt{font-weight:640; font-size:.9rem; margin-top:14px}
+  .skills dt:first-child{margin-top:0}
+  .skills dd{margin:3px 0 0; color:var(--muted); font-size:.94rem}
+
+  footer{padding:34px 0 64px; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Dinesh Gurajada</h1>
+  <p class="role">Platform &amp; Site Reliability Engineer</p>
+  <nav class="links">
+    <a href="mailto:dgurajada@gmail.com">dgurajada@gmail.com</a>
+    <a href="https://www.linkedin.com/in/dinesh-gurajada" rel="me noopener">LinkedIn</a>
+    <a href="https://github.com/Dinesh94g" rel="me noopener">GitHub</a>
+  </nav>
+</header>
+
+<section>
+  <h2>About</h2>
+  <p class="lead">
+    I build and run the infrastructure behind a live commercial real-estate auction platform —
+    Kubernetes, AWS, and the delivery pipelines that put code in front of bidders.
+  </p>
+  <p>
+    Most of my work is migrations that cannot afford downtime: a fifteen-service language
+    re-platform, an ingress replacement across production clusters, a node-provisioning swap.
+    I care about making risky changes cheaply reversible, and about proving a fix worked with
+    data rather than asserting it.
+  </p>
+</section>
+
+<section>
+  <h2>Impact</h2>
+  <div class="metrics">
+    <div class="metric">
+      <span class="n">Zero</span>
+      <span class="l">Client-facing errors per deployment, after ingress rollout tuning</span>
+    </div>
+    <div class="metric">
+      <span class="n">15</span>
+      <span class="l">Microservices re-platformed to .NET across four environments</span>
+    </div>
+    <div class="metric">
+      <span class="n">~⅔</span>
+      <span class="l">Off-hours non-production compute cost removed via autoscaling</span>
+    </div>
+    <div class="metric">
+      <span class="n">3</span>
+      <span class="l">AWS regions of managed Kubernetes upgraded under change control</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Selected Projects</h2>
+
+  <div class="project">
+    <h3>Microservices Platform Migration — Java to .NET</h3>
+    <p class="meta">Sole DevOps engineer · 2025–2026 · 15 microservices, 4 environments</p>
+    <p>
+      Owned every layer of infrastructure for a Java-to-.NET rewrite of a live transaction platform:
+      build and release pipelines, Kubernetes deployment, service mesh routing, secrets injection,
+      message-bus permissions and database delivery. Wrote the promotion gates, deployment
+      checklists and rollback playbooks, and ran the CDN maintenance window for cutover.
+      Launched to production on schedule.
+    </p>
+    <div class="stack">
+      <span>Kubernetes / EKS</span><span>Helm</span><span>Istio</span><span>Argo Rollouts</span>
+      <span>HashiCorp Vault</span><span>Kafka</span><span>CDN</span><span>.NET</span>
+    </div>
+  </div>
+
+  <div class="project">
+    <h3>Ingress Modernisation — NGINX to HAProxy</h3>
+    <p class="meta">Infrastructure lead · 2026 · Multi-cluster, adopted beyond my own team</p>
+    <p>
+      Designed a zero-downtime migration in which both ingress controllers share a single load
+      balancer, so rollback is a replica scale — under a minute, with no infrastructure apply and
+      no DNS change. Packaged as versioned Terraform modules and a self-service runbook that three
+      teams outside my own adopted. Delivered to production as part of a major cluster version
+      upgrade.
+    </p>
+    <p>
+      Eliminated deployment-time client errors along the way, verified by controlled load testing
+      rather than assumed from the absence of alerts.
+    </p>
+    <div class="stack">
+      <span>HAProxy</span><span>Istio</span><span>AWS ALB</span><span>Terraform</span>
+      <span>Argo CD</span><span>Helm</span>
+    </div>
+  </div>
+
+  <div class="project">
+    <h3>Kubernetes Cost &amp; Capacity Optimisation</h3>
+    <p class="meta">Infrastructure lead · 2024–2026 · 15+ services</p>
+    <p>
+      Introduced hybrid autoscaling — scheduled scaling for predictable load, metric-driven scaling
+      as the safety net — including custom scheduling around a recurring business-event cycle.
+      Right-sized CPU and memory across the fleet from production telemetry, and reduced cross-zone
+      data transfer costs with topology-aware routing.
+    </p>
+    <p>
+      Cut off-hours non-production compute cost by roughly two thirds. Notably, I reverted planned
+      savings on several business-critical services before merge once load analysis showed
+      peak-event demand needed the headroom.
+    </p>
+    <div class="stack">
+      <span>KEDA</span><span>HPA</span><span>Karpenter</span><span>Topology-aware routing</span>
+      <span>Datadog</span><span>Terraform</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <dl class="skills">
+    <dt>Kubernetes</dt>
+    <dd>Amazon EKS, Helm, Istio, Argo Rollouts, Argo CD, Karpenter, KEDA, HPA</dd>
+    <dt>Cloud</dt>
+    <dd>AWS — IAM, ElastiCache, RDS / Aurora, DynamoDB, Lambda, ALB, Route 53, S3, KMS</dd>
+    <dt>Infrastructure as Code</dt>
+    <dd>Terraform, versioned module design, Azure DevOps Pipelines, GitOps</dd>
+    <dt>Reliability &amp; Observability</dt>
+    <dd>Datadog, OpenTelemetry, Prometheus, Grafana, failure injection, capacity planning</dd>
+    <dt>Platform</dt>
+    <dd>HashiCorp Vault, Apache Kafka, Docker, CDN configuration, Linux, Bash, Python</dd>
+  </dl>
+</section>
+
+<footer>
+  <p>Built as a static page — no trackers, no analytics.</p>
+</footer>
+
+</div>
+</body>
+</html>
