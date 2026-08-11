@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Dinesh Gurajada — Senior DevOps Engineer</title>
+<title>Dinesh Gurajada, Ph.D. — Senior DevOps Engineer</title>
 <meta name="description" content="Senior DevOps Engineer specialising in Kubernetes, AWS and large-scale production migrations.">
-<meta property="og:title" content="Dinesh Gurajada — Senior DevOps Engineer">
+<meta property="og:title" content="Dinesh Gurajada, Ph.D. — Senior DevOps Engineer">
 <meta property="og:description" content="Senior DevOps Engineer specialising in Kubernetes, AWS and large-scale production migrations.">
 <meta property="og:type" content="profile">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⎈</text></svg>">
@@ -66,15 +66,38 @@
   .skills dd{margin:3px 0 0; color:var(--muted); font-size:.94rem}
 
   footer{padding:34px 0 64px; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem}
+
+  @media print{
+    :root{
+      --bg:#fff; --fg:#000; --muted:#333; --line:#bbb;
+      --accent:#000; --chip-bg:#fff; --card:#fff;
+    }
+    body{font-size:10pt; line-height:1.45}
+    .wrap{max-width:none; padding:0}
+    header{padding:0 0 10pt}
+    h1{font-size:18pt}
+    .role{font-size:11pt; margin-bottom:6pt}
+    section{padding:10pt 0}
+    h2{font-size:8.5pt; margin-bottom:8pt}
+    .metrics{grid-template-columns:repeat(4,1fr); gap:6pt}
+    .metric{padding:6pt}
+    .metric .n{font-size:12pt}
+    .project{margin-bottom:12pt}
+    .project, .metric, dt, dd{break-inside:avoid}
+    a{text-decoration:none}
+    .links a[href^="http"]::after{content:" (" attr(href) ")"; font-size:8pt; color:#333}
+    footer{display:none}
+  }
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <header>
-  <h1>Dinesh Gurajada</h1>
+  <h1>Dinesh Gurajada, Ph.D.</h1>
   <p class="role">Senior DevOps Engineer</p>
   <nav class="links">
+    <a href="mailto:dinesh94g@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/dinesh-gurajada" rel="me noopener">LinkedIn</a>
     <a href="https://github.com/Dinesh94g" rel="me noopener">GitHub</a>
   </nav>
@@ -83,7 +106,7 @@
 <section>
   <h2>About</h2>
   <p class="lead">
-    I build and run the infrastructure behind a live commercial real-estate auction platform —
+    I build and run the infrastructure behind CoStar Group's commercial real-estate auction platform —
     Kubernetes, AWS, and the delivery pipelines that put code in front of bidders.
   </p>
   <p>
@@ -97,6 +120,11 @@
     The thread through all of it is turning one-off work into shared assets: a build fix becomes the
     onboarding document, a rollout fix goes into the shared chart, a migration becomes versioned
     modules and a runbook someone else can run without me.
+  </p>
+  <p>
+    My doctoral research was on AI adoption in organisations, and it shapes what I want to build next:
+    platforms that carry AI and ML workloads without giving up the reliability and cost discipline the
+    rest of the estate runs on.
   </p>
 </section>
 
@@ -124,6 +152,7 @@
 
 <section>
   <h2>Projects I've Worked On</h2>
+  <p class="meta">Ordered by impact rather than by date.</p>
 
   <div class="project">
     <h3>Microservices Platform Migration — Java to .NET</h3>
@@ -197,25 +226,6 @@
   </div>
 
   <div class="project">
-    <h3>Event-Driven Serverless Platform</h3>
-    <p class="meta">Infrastructure &amp; observability owner · 2023 · greenfield build</p>
-    <p>
-      Owned all infrastructure and observability for a greenfield, serverless-first product: one
-      function per bounded context, a NoSQL system of record with change streams and cross-region
-      replication, managed end-user identity, event fan-out across a message bus, streams and queues,
-      and dedicated audit-trail services for regulatory requirements.
-    </p>
-    <p>
-      Wrote its Terraform from an empty account, consolidated logging onto one observability platform,
-      and designed the monitors — including separating production paging from non-production noise.
-    </p>
-    <div class="stack">
-      <span>AWS Lambda</span><span>DynamoDB</span><span>Kinesis</span><span>SQS</span>
-      <span>Cognito</span><span>Terraform</span><span>Datadog</span>
-    </div>
-  </div>
-
-  <div class="project">
     <h3>Fleet Capacity, Cost &amp; Node Provisioning</h3>
     <p class="meta">Infrastructure lead · 2024–2026 · multiple clusters, 15+ services</p>
     <p>
@@ -241,10 +251,29 @@
   </div>
 
   <div class="project">
-    <h3>Data Centre to AWS — the Platform's First Migration</h3>
-    <p class="meta">DevOps engineer, delivery partner · 2019–2020 · 113 services</p>
+    <h3>Event-Driven Serverless Platform</h3>
+    <p class="meta">Infrastructure &amp; observability owner · 2023 · greenfield build</p>
     <p>
-      Moved an auction platform out of its own data centre as the delivery partner's DevOps engineer:
+      Owned all infrastructure and observability for a greenfield, serverless-first product: one
+      function per bounded context, a NoSQL system of record with change streams and cross-region
+      replication, managed end-user identity, event fan-out across a message bus, streams and queues,
+      and dedicated audit-trail services for regulatory requirements.
+    </p>
+    <p>
+      Wrote its Terraform from an empty account, consolidated logging onto one observability platform,
+      and designed the monitors — including separating production paging from non-production noise.
+    </p>
+    <div class="stack">
+      <span>AWS Lambda</span><span>DynamoDB</span><span>Kinesis</span><span>SQS</span>
+      <span>Cognito</span><span>Terraform</span><span>Datadog</span>
+    </div>
+  </div>
+
+  <div class="project">
+    <h3>Data Centre to AWS — the Platform's First Migration</h3>
+    <p class="meta">DevOps engineer · DXC Technology · 2019–2020 · 113 services</p>
+    <p>
+      Moved an auction platform out of its own data centre:
       VPCs, subnets, gateways and DNS defined in CloudFormation across two regions and four
       availability zones, then four managed Kubernetes clusters — development through production plus
       disaster recovery — built the same way.
@@ -264,21 +293,81 @@
 </section>
 
 <section>
+  <h2>Experience</h2>
+  <dl class="skills">
+    <dt>CoStar Group — Senior DevOps Engineer</dt>
+    <dd>
+      August 2021 – Present · the .NET re-platform, the secrets and access substrate, ingress
+      modernisation, rollout reliability, the serverless build, and fleet capacity and node
+      provisioning
+    </dd>
+    <dt>DXC Technology — Cloud DevOps Engineer, then Re-Hosting Capability Lead</dt>
+    <dd>
+      February 2019 – August 2021 · cloud modernisation and application migration for enterprise
+      clients across AWS and Azure, including the data centre to AWS migration
+    </dd>
+    <dt>TNP Systems — DevOps Engineer</dt>
+    <dd>
+      July 2018 – February 2019 · cloud automation, container-based CI/CD pipelines and
+      infrastructure provisioning workflows
+    </dd>
+    <dt>Eastern Illinois University — IT Technical Associate, DevOps</dt>
+    <dd>
+      November 2017 – July 2018 · automated build, test and deployment workflows, and IAM practices
+      following least privilege
+    </dd>
+    <dt>Illinois Department of Human Services — Graduate Public Service Intern</dt>
+    <dd>
+      August 2016 – June 2017 · CI/CD automation and deployment workflows in Python, Jenkins and
+      Docker
+    </dd>
+    <dt>Dark Horse Digital Solutions — Software Consultant Intern</dt>
+    <dd>
+      January 2015 – March 2015 · web-based workflow automation for insurance policy management on a
+      BPM platform
+    </dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <dl class="skills">
+    <dt>University of the Cumberlands — Ph.D., Information Technology</dt>
+    <dd>August 2020 – February 2026 · research on AI adoption in organisations</dd>
+    <dt>University of Illinois Springfield — M.S., Computer Science</dt>
+    <dd>January 2016 – July 2017</dd>
+    <dt>Geethanjali College of Engineering and Technology — B.S., Information Technology</dt>
+    <dd>2011 – 2015</dd>
+  </dl>
+</section>
+
+<section>
   <h2>Skills</h2>
   <dl class="skills">
     <dt>Kubernetes</dt>
     <dd>Amazon EKS, Helm, Istio, Argo Rollouts, Argo CD, Karpenter, KEDA, HPA</dd>
     <dt>Cloud</dt>
-    <dd>AWS — IAM, ElastiCache, RDS / Aurora, DynamoDB, Lambda, ALB, Route 53, S3, KMS</dd>
+    <dd>
+      AWS — IAM, ElastiCache, RDS / Aurora, DynamoDB, Lambda, ALB, Route 53, S3, KMS ·
+      Microsoft Azure
+    </dd>
     <dt>Infrastructure as Code</dt>
-    <dd>Terraform, versioned module design, Azure DevOps Pipelines, GitOps</dd>
+    <dd>Terraform, CloudFormation, Ansible, versioned module design, Azure DevOps Pipelines, GitOps</dd>
     <dt>Reliability &amp; Observability</dt>
     <dd>
       Datadog, OpenTelemetry, Prometheus, Grafana, capacity planning, and failure injection as
       code — Terraform-managed DNS blackholes for on-demand dependency-loss drills
     </dd>
     <dt>Platform</dt>
-    <dd>HashiCorp Vault, Apache Kafka, Docker, CDN configuration, Linux, Bash, Python</dd>
+    <dd>
+      HashiCorp Vault, Apache Kafka / Confluent, Jenkins, Docker, CDN configuration, Linux, Bash,
+      Python
+    </dd>
+    <dt>Certifications</dt>
+    <dd>
+      Certified Kubernetes Administrator (CKA) · AWS Certified SysOps Administrator ·
+      AWS Certified AI Practitioner
+    </dd>
   </dl>
 </section>
 
