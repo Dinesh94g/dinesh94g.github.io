@@ -29,41 +29,71 @@
   }
   .wrap{max-width:760px; margin:0 auto; padding:0 24px}
   a{color:var(--accent); text-decoration:none}
-  a:hover{text-decoration:underline}
+  a:hover{text-decoration:underline; text-underline-offset:2px}
   a:focus-visible{outline:2px solid var(--accent); outline-offset:3px; border-radius:3px}
+  ::selection{background:var(--accent); color:#fff}
 
   header{padding:72px 0 40px}
-  h1{font-size:2.15rem; line-height:1.15; margin:0 0 6px; letter-spacing:-.02em}
-  .role{font-size:1.1rem; color:var(--muted); margin:0 0 18px}
-  .links{display:flex; flex-wrap:wrap; gap:18px; font-size:.94rem}
-
-  section{padding:34px 0; border-top:1px solid var(--line)}
-  h2{
-    font-size:.8rem; text-transform:uppercase; letter-spacing:.09em;
-    color:var(--muted); margin:0 0 18px; font-weight:600;
+  h1{
+    font-size:clamp(1.75rem,6vw,2.2rem); line-height:1.12; margin:0 0 8px;
+    letter-spacing:-.025em; text-wrap:balance;
   }
-  p{margin:0 0 14px}
-  .lead{font-size:1.06rem}
+  .role{font-size:1.05rem; color:var(--muted); margin:0 0 20px; letter-spacing:.01em}
+  .links{display:flex; flex-wrap:wrap; gap:20px; font-size:.94rem; font-weight:500}
 
-  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:14px}
-  .metric{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:16px}
-  .metric .n{display:block; font-size:1.5rem; font-weight:650; letter-spacing:-.01em}
-  .metric .l{display:block; font-size:.86rem; color:var(--muted); margin-top:4px; line-height:1.45}
+  section{padding:38px 0; border-top:1px solid var(--line)}
+  h2{
+    display:flex; align-items:center; gap:12px;
+    font-size:.78rem; text-transform:uppercase; letter-spacing:.11em;
+    color:var(--muted); margin:0 0 22px; font-weight:650;
+  }
+  h2::after{content:""; flex:1; height:1px; background:var(--line)}
+  p{margin:0 0 14px; text-wrap:pretty}
+  .lead{font-size:1.13rem; line-height:1.55; letter-spacing:-.005em}
 
-  .project{margin-bottom:28px}
+  .metrics{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px}
+  .metric{
+    background:var(--card); border:1px solid var(--line); border-radius:10px; padding:18px 16px;
+  }
+  .metric .n{
+    display:block; font-size:1.45rem; font-weight:680; line-height:1.15;
+    letter-spacing:-.02em; color:var(--accent); font-variant-numeric:tabular-nums;
+  }
+  .metric .l{display:block; font-size:.85rem; color:var(--muted); margin-top:7px; line-height:1.45}
+
+  .project{margin-bottom:30px}
+  .project + .project{border-top:1px solid var(--line); padding-top:28px}
   .project:last-child{margin-bottom:0}
-  .project h3{font-size:1.06rem; margin:0 0 3px; font-weight:640}
-  .meta{font-size:.85rem; color:var(--muted); margin:0 0 9px}
-  .project p{margin:0 0 10px}
-  .stack{display:flex; flex-wrap:wrap; gap:6px}
+  .project h3{font-size:1.1rem; margin:0 0 4px; font-weight:660; letter-spacing:-.01em}
+  .meta{font-size:.84rem; color:var(--muted); margin:0 0 11px}
+  .project p{margin:0 0 11px}
+  .stack{display:flex; flex-wrap:wrap; gap:6px; margin-top:13px}
   .stack span{
     font-size:.76rem; background:var(--chip-bg); border:1px solid var(--line);
-    color:var(--muted); padding:2px 9px; border-radius:99px; white-space:nowrap;
+    color:var(--muted); padding:3px 10px; border-radius:99px; white-space:nowrap;
   }
 
-  .skills dt{font-weight:640; font-size:.9rem; margin-top:14px}
+  .skills dt{font-weight:660; font-size:.95rem; margin-top:18px}
   .skills dt:first-child{margin-top:0}
-  .skills dd{margin:3px 0 0; color:var(--muted); font-size:.94rem}
+  .skills dd{margin:5px 0 0; color:var(--muted); font-size:.93rem; line-height:1.6}
+  .notes{display:grid; gap:12px}
+  .note{
+    background:var(--card); border:1px solid var(--line); border-radius:10px; padding:15px 17px;
+  }
+  .note h3{font-size:.98rem; margin:0 0 6px; font-weight:660; letter-spacing:-.005em}
+  .note p{margin:0; font-size:.92rem; color:var(--muted); line-height:1.55}
+
+  .timeline{margin:0; padding-left:22px; border-left:2px solid var(--line)}
+  .timeline dt{position:relative; font-weight:660; font-size:.95rem; margin-top:20px}
+  .timeline dt:first-of-type{margin-top:0}
+  .timeline dt::before{
+    content:""; position:absolute; left:-27px; top:.42em;
+    width:9px; height:9px; border-radius:50%;
+    background:var(--accent); box-shadow:0 0 0 3px var(--bg);
+  }
+  .timeline dd{margin:4px 0 0; color:var(--muted); font-size:.93rem; line-height:1.6}
+
+  section:target h2{color:var(--accent)}
 
   footer{padding:34px 0 64px; border-top:1px solid var(--line); color:var(--muted); font-size:.88rem}
 
@@ -82,7 +112,13 @@
     .metrics{grid-template-columns:repeat(4,1fr); gap:6pt}
     .metric{padding:6pt}
     .metric .n{font-size:12pt}
+    .lead{font-size:11pt}
     .project{margin-bottom:12pt}
+    .project + .project{padding-top:12pt}
+    .skills dt, .timeline dt{margin-top:9pt}
+    .note{padding:6pt; break-inside:avoid}
+    .timeline{padding-left:12pt}
+    .timeline dt::before{display:none}
     .project, .metric, dt, dd{break-inside:avoid}
     a{text-decoration:none}
     .links a[href^="http"]::after{content:" (" attr(href) ")"; font-size:8pt; color:#333}
@@ -105,8 +141,8 @@
 <section>
   <h2>About</h2>
   <p class="lead">
-    I build and run the infrastructure behind CoStar Group's commercial real-estate auction platform —
-    Kubernetes, AWS, and the delivery pipelines that put code in front of bidders.
+    I build and run the infrastructure behind CoStar Group's commercial real-estate auction platform.
+    That means Kubernetes, AWS, and the delivery pipelines that put code in front of bidders.
   </p>
   <p>
     Most of what I do is migration work on systems that can't go down. I've moved fifteen services
@@ -124,7 +160,7 @@
   </p>
   <p>
     My doctorate examined how organisations in the US real estate industry adopt AI to improve
-    performance — the same industry I build infrastructure for. It points at what I'd like to build
+    performance, the same industry I build infrastructure for. It points at what I'd like to build
     next: platforms that can carry AI and ML workloads without giving up the reliability and cost
     discipline the rest of the estate runs on.
   </p>
@@ -143,7 +179,7 @@
     </div>
     <div class="metric">
       <span class="n">&lt; 1 min</span>
-      <span class="l">To roll back a production ingress change — no infrastructure apply, no DNS change</span>
+      <span class="l">To roll back a production ingress change, with no infrastructure apply and no DNS change</span>
     </div>
     <div class="metric">
       <span class="n">67%</span>
@@ -157,14 +193,15 @@
   <p class="meta">Ordered by impact rather than by date.</p>
 
   <div class="project">
-    <h3>Microservices Platform Migration — Java to .NET</h3>
+    <h3>Microservices Platform Migration: Java to .NET</h3>
     <p class="meta">Infrastructure owner · 2025–2026 · 15 microservices, 4 environments</p>
     <p>
       A live transaction platform was being rewritten from Java to .NET, and I owned every layer of
       infrastructure underneath it. That meant the pipelines that built and released it, the
       Kubernetes deployments and mesh routing, the secrets it needed at runtime, and the database
       changes that had to land alongside the code. I wrote the promotion gates and the rollback
-      playbooks, and ran the CDN maintenance window on cutover night.
+      playbooks, and built the maintenance window at the Akamai edge that carried the cutover,
+      rehearsing it in test before running it in production on the night.
     </p>
     <p>
       The first services wouldn't build at all. Once I found why, I turned the fix into a written
@@ -173,7 +210,7 @@
     </p>
     <div class="stack">
       <span>Kubernetes / EKS</span><span>Helm</span><span>Istio</span><span>Argo Rollouts</span>
-      <span>HashiCorp Vault</span><span>Kafka</span><span>CDN</span><span>.NET</span>
+      <span>HashiCorp Vault</span><span>Kafka</span><span>Akamai</span><span>.NET</span>
     </div>
   </div>
 
@@ -199,7 +236,7 @@
   </div>
 
   <div class="project">
-    <h3>Ingress Modernisation — NGINX to HAProxy</h3>
+    <h3>Ingress Modernisation: NGINX to HAProxy</h3>
     <p class="meta">Infrastructure lead · 2026 · Multi-cluster, adopted beyond my own team</p>
     <p>
       I designed the cutover so that going back was cheap. Rolling back is a configuration change that
@@ -219,7 +256,7 @@
     <p class="meta">One fix in the shared chart · 2026 · every consuming team</p>
     <p>
       Rollouts retire old pods on a fixed delay. If that delay is shorter than a service needs to
-      finish what it's holding, requests get cut off mid-flight — and nothing alerts on it, so it
+      finish what it's holding, requests get cut off mid-flight, and nothing alerts on it, so it
       carries on unnoticed. I measured how long each service actually took to shut down and set the
       timing in the shared chart rather than service by service, so every team using that chart got
       the fix without doing anything. I confirmed it with controlled load testing rather than trusting
@@ -236,7 +273,7 @@
     <p class="meta">Infrastructure lead · 2024–2026 · multiple clusters, 15+ services</p>
     <p>
       I replaced a third-party node provisioner with the CNCF-standard autoscaler, one environment at
-      a time over five months, leaving production to soak before finishing. The reason wasn't cost — it
+      a time over five months, leaving production to soak before finishing. The reason wasn't cost. It
       was getting a third-party dependency out of the path every cluster depends on for capacity. I
       designed the node pools deliberately rather than by default: cheap interruptible capacity for
       ordinary workloads, reserved capacity held back for the ones that can't tolerate an eviction.
@@ -245,7 +282,7 @@
     </p>
     <p>
       On the workload side I introduced hybrid autoscaling: schedules handle the load we can predict,
-      metrics catch the load we can't. Off-hours non-production cost fell by roughly two thirds — though
+      metrics catch the load we can't. Off-hours non-production cost fell by roughly two thirds, though
       I reverted the savings on several business-critical services before merge, once the load analysis
       showed they needed that headroom for peak events.
     </p>
@@ -268,8 +305,8 @@
     </p>
     <p>
       I wrote its Terraform from an empty AWS account, moved its logging onto a single observability
-      platform, and designed the monitors — including splitting production paging away from
-      non-production noise, so a page at night meant something.
+      platform, and designed the monitors, including splitting production paging away from
+      non-production noise so that a page at night meant something.
     </p>
     <div class="stack">
       <span>AWS Lambda</span><span>DynamoDB</span><span>Kinesis</span><span>SQS</span>
@@ -278,13 +315,13 @@
   </div>
 
   <div class="project">
-    <h3>Data Centre to AWS — the Platform's First Migration</h3>
+    <h3>Data Centre to AWS: the Platform's First Migration</h3>
     <p class="meta">DevOps engineer · DXC Technology · 2019–2020 · 113 services</p>
     <p>
       This was the migration that took an auction platform out of its own data centre and onto AWS. I
-      defined the networking in CloudFormation — the VPCs, subnets, gateways and DNS — across two
-      regions and four availability zones, then built four managed Kubernetes clusters the same way,
-      covering development through production plus disaster recovery.
+      defined the VPCs, subnets, gateways and DNS in CloudFormation across two regions and four
+      availability zones, then built four managed Kubernetes clusters the same way, covering
+      development through production plus disaster recovery.
     </p>
     <p>
       113 microservices came off the incumbent orchestrator, and I built the delivery system that
@@ -303,57 +340,54 @@
 <section id="notes">
   <h2>Notes</h2>
   <p>Three things that cost me time, in case they cost someone else less.</p>
-  <dl class="skills">
-    <dt>Topology-aware routing is not a switch</dt>
-    <dd>
-      It needs three ready endpoints in <em>every</em> zone and zone-labelled nodes. Below that, the
-      annotation is accepted and silently does nothing — so check the EndpointSlice, not your config.
-    </dd>
-    <dt>DynamoDB billing mode cannot change on a replicated table</dt>
-    <dd>
-      Replicas off, mode changed, replicas back — and because Terraform declares both in one resource,
-      that is three deliberate applies rather than one.
-    </dd>
-    <dt>Scheduled and metric autoscaling together: max wins</dt>
-    <dd>
-      The highest trigger wins, so a schedule sets the floor and metrics react above it. But min and
-      max always bind, and KEDA quietly reverts hand-edits to the HPA it owns.
-    </dd>
-  </dl>
+  <div class="notes">
+    <div class="note">
+      <h3>Topology-aware routing is not a switch</h3>
+      <p>It needs three ready endpoints in <em>every</em> zone and zone-labelled nodes. Below that, the annotation is accepted and silently does nothing, so check the EndpointSlice rather than your config.</p>
+    </div>
+    <div class="note">
+      <h3>DynamoDB billing mode cannot change on a replicated table</h3>
+      <p>Replicas off, mode changed, replicas back. Because Terraform declares both in one resource, that is three deliberate applies rather than one.</p>
+    </div>
+    <div class="note">
+      <h3>Scheduled and metric autoscaling together: max wins</h3>
+      <p>The highest trigger wins, so a schedule sets the floor and metrics react above it. But min and max always bind, and KEDA quietly reverts hand-edits to the HPA it owns.</p>
+    </div>
+  </div>
 </section>
 
 <section>
   <h2>Experience</h2>
-  <dl class="skills">
-    <dt>CoStar Group — Senior DevOps Engineer</dt>
+  <dl class="timeline">
+    <dt>CoStar Group · Senior DevOps Engineer</dt>
     <dd>August 2021 – Present · every project here except the data centre migration</dd>
-    <dt>DXC Technology — Cloud DevOps Engineer, then Re-Hosting Capability Lead</dt>
+    <dt>DXC Technology · Cloud DevOps Engineer, then Re-Hosting Capability Lead</dt>
     <dd>
       February 2019 – August 2021 · cloud modernisation and application migration for enterprise
       clients across AWS and Azure, including the data centre to AWS migration
     </dd>
-    <dt>TNP Systems — DevOps Engineer</dt>
+    <dt>TNP Systems · DevOps Engineer</dt>
     <dd>July 2018 – February 2019 · cloud automation and container-based CI/CD</dd>
-    <dt>Eastern Illinois University — IT Technical Associate, DevOps</dt>
+    <dt>Eastern Illinois University · IT Technical Associate, DevOps</dt>
     <dd>November 2017 – July 2018 · build and deployment automation, least-privilege IAM</dd>
-    <dt>Illinois Department of Human Services — Graduate Public Service Intern</dt>
+    <dt>Illinois Department of Human Services · Graduate Public Service Intern</dt>
     <dd>August 2016 – June 2017 · CI/CD automation in Python, Jenkins and Docker</dd>
-    <dt>Dark Horse Digital Solutions — Software Consultant Intern</dt>
+    <dt>Dark Horse Digital Solutions · Software Consultant Intern</dt>
     <dd>January 2015 – March 2015</dd>
   </dl>
 </section>
 
 <section>
   <h2>Education</h2>
-  <dl class="skills">
-    <dt>University of the Cumberlands — Ph.D., Information Technology</dt>
+  <dl class="timeline">
+    <dt>University of the Cumberlands · Ph.D., Information Technology</dt>
     <dd>
       August 2020 – February 2026 · dissertation on the adoption of AI to enhance organisational
       performance in the US real estate industry
     </dd>
-    <dt>University of Illinois Springfield — M.S., Computer Science</dt>
+    <dt>University of Illinois Springfield · M.S., Computer Science</dt>
     <dd>January 2016 – July 2017</dd>
-    <dt>Geethanjali College of Engineering and Technology — B.S., Information Technology</dt>
+    <dt>Geethanjali College of Engineering and Technology · B.S., Information Technology</dt>
     <dd>August 2011 – May 2015</dd>
   </dl>
 </section>
@@ -365,20 +399,20 @@
     <dd>Amazon EKS, Helm, Istio, Argo Rollouts, Argo CD, Karpenter, KEDA, HPA</dd>
     <dt>Cloud</dt>
     <dd>
-      AWS — IAM, ElastiCache, RDS / Aurora, DynamoDB, Lambda, ALB, Route 53, S3, KMS ·
-      Microsoft Azure
+      AWS (IAM, ElastiCache, RDS / Aurora, DynamoDB, Lambda, ALB, Route 53, S3, KMS), Microsoft
+      Azure
     </dd>
     <dt>Infrastructure as Code</dt>
     <dd>Terraform, CloudFormation, Ansible, versioned module design, Azure DevOps Pipelines, GitOps</dd>
     <dt>Reliability &amp; Observability</dt>
     <dd>
-      Datadog, OpenTelemetry, Prometheus, Grafana, capacity planning, and failure injection as
-      code — Terraform-managed DNS blackholes for on-demand dependency-loss drills
+      Datadog, OpenTelemetry, Prometheus, Grafana, capacity planning, and failure injection as code
+      (Terraform-managed DNS blackholes for on-demand dependency-loss drills)
     </dd>
     <dt>Platform</dt>
     <dd>
-      HashiCorp Vault, Apache Kafka / Confluent, Jenkins, Docker, CDN configuration, Linux, Bash,
-      Python
+      HashiCorp Vault, Apache Kafka / Confluent, Jenkins, Docker, Linux, Bash, Python, and Akamai
+      CDN configuration (properties, cloudlets, NetStorage)
     </dd>
     <dt>Certifications</dt>
     <dd>
