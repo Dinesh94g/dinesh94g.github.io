@@ -95,11 +95,10 @@
 
 <header>
   <h1>Dinesh Gurajada, Ph.D.</h1>
-  <p class="role">Senior DevOps Engineer</p>
+  <p class="role">Senior DevOps Engineer · Platform &amp; Reliability</p>
   <nav class="links">
     <a href="mailto:dinesh94g@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/dinesh-gurajada" rel="me noopener">LinkedIn</a>
-    <a href="https://github.com/Dinesh94g" rel="me noopener">GitHub</a>
   </nav>
 </header>
 
@@ -110,21 +109,24 @@
     Kubernetes, AWS, and the delivery pipelines that put code in front of bidders.
   </p>
   <p>
-    Most of my work is migrations that cannot afford downtime: a fifteen-service language
-    re-platform, an ingress replacement across production clusters, a node-provisioning swap.
-    Before those, a greenfield serverless product built from an empty account — and before that, the
-    migration that first put this platform on managed Kubernetes at all. I care about making risky
-    changes cheaply reversible, and about proving a fix worked with data rather than asserting it.
+    Most of what I do is migration work on systems that can't go down. I've moved fifteen services
+    from Java to .NET, replaced the ingress layer across production clusters, and changed how the
+    fleet gets its nodes. Earlier there was a greenfield serverless product I built from an empty AWS
+    account, and before that, the migration that first put this platform on managed Kubernetes at all.
+    Two things matter to me throughout: making a risky change cheap to undo, and proving a fix worked
+    rather than asserting it.
   </p>
   <p>
-    The thread through all of it is turning one-off work into shared assets: a build fix becomes the
-    onboarding document, a rollout fix goes into the shared chart, a migration becomes versioned
-    modules and a runbook someone else can run without me.
+    If there's a thread, it's that I try not to solve the same problem twice. A build fix became the
+    document new teams onboarded against. A rollout fix went into the shared chart, so every team
+    inherited it without asking. A migration became versioned modules and a runbook someone else
+    could follow without me.
   </p>
   <p>
-    My doctoral research was on AI adoption in organisations, and it shapes what I want to build next:
-    platforms that carry AI and ML workloads without giving up the reliability and cost discipline the
-    rest of the estate runs on.
+    My doctorate examined how organisations in the US real estate industry adopt AI to improve
+    performance — the same industry I build infrastructure for. It points at what I'd like to build
+    next: platforms that can carry AI and ML workloads without giving up the reliability and cost
+    discipline the rest of the estate runs on.
   </p>
 </section>
 
@@ -132,20 +134,20 @@
   <h2>Impact</h2>
   <div class="metrics">
     <div class="metric">
-      <span class="n">113</span>
-      <span class="l">Services migrated from a data centre onto managed Kubernetes</span>
+      <span class="n">On schedule</span>
+      <span class="l">A live transaction platform rewritten across 15 services, launched without a slip</span>
     </div>
     <div class="metric">
-      <span class="n">15</span>
-      <span class="l">Microservices re-platformed to .NET across four environments</span>
+      <span class="n">Zero</span>
+      <span class="l">Long-lived static credentials left in the runtime path, after moving access to IAM roles</span>
     </div>
     <div class="metric">
-      <span class="n">~⅔</span>
+      <span class="n">&lt; 1 min</span>
+      <span class="l">To roll back a production ingress change — no infrastructure apply, no DNS change</span>
+    </div>
+    <div class="metric">
+      <span class="n">67%</span>
       <span class="l">Off-hours non-production compute cost removed via autoscaling</span>
-    </div>
-    <div class="metric">
-      <span class="n">4</span>
-      <span class="l">Environments running on the secrets and access substrate I built</span>
     </div>
   </div>
 </section>
@@ -158,15 +160,16 @@
     <h3>Microservices Platform Migration — Java to .NET</h3>
     <p class="meta">Infrastructure owner · 2025–2026 · 15 microservices, 4 environments</p>
     <p>
-      Owned every infrastructure layer of a Java-to-.NET rewrite of a live transaction platform:
-      build and release pipelines, Kubernetes deployment, mesh routing, secrets injection,
-      message-bus permissions, database delivery, promotion gates and rollback playbooks — plus the
-      CDN maintenance window for cutover.
+      A live transaction platform was being rewritten from Java to .NET, and I owned every layer of
+      infrastructure underneath it. That meant the pipelines that built and released it, the
+      Kubernetes deployments and mesh routing, the secrets it needed at runtime, and the database
+      changes that had to land alongside the code. I wrote the promotion gates and the rollback
+      playbooks, and ran the CDN maintenance window on cutover night.
     </p>
     <p>
-      When the first services wouldn't build, I generalised the fix — container, routing, chart and
-      pipeline conventions — into documentation every later team onboarded against, so the second
-      wave cost a fraction of the first. Shipped on schedule.
+      The first services wouldn't build at all. Once I found why, I turned the fix into a written
+      convention rather than a one-off repair, so every team after us started from a pattern instead
+      of a puzzle. The second wave cost a fraction of the first, and we shipped on schedule.
     </p>
     <div class="stack">
       <span>Kubernetes / EKS</span><span>Helm</span><span>Istio</span><span>Argo Rollouts</span>
@@ -175,18 +178,19 @@
   </div>
 
   <div class="project">
-    <h3>Secrets &amp; Access Substrate for a New Service Fleet</h3>
+    <h3>Secrets and Access Layer for a New Service Fleet</h3>
     <p class="meta">Infrastructure owner · 2025–2026 · 15 services, 4 environments</p>
     <p>
-      Built the layer every service needed before it could start: secrets injected at runtime from a
-      central vault instead of baked into images, cache and data-store access through workload IAM
-      roles instead of static passwords, per-service message-bus credentials, and database delivery
-      moved from manual scripts onto gated pipelines.
+      Every service in the new fleet needed the same handful of things before it could start, and none
+      of them existed yet. I built that layer. Secrets are pulled from a central vault at runtime
+      instead of baked into images, cache and database access is granted through workload IAM roles
+      instead of static passwords, message-bus credentials are issued per service, and schema changes
+      go out through a gated pipeline rather than by hand.
     </p>
     <p>
-      The durable win was removing long-lived static credentials from the runtime path — access
-      became role-based and auditable, and standing up a service became a checklist rather than
-      tribal knowledge.
+      What lasted was taking long-lived static credentials out of the runtime path altogether. Access
+      became role-based and auditable, and standing up a new service turned into a checklist anyone
+      could follow instead of knowledge that lived in my head.
     </p>
     <div class="stack">
       <span>HashiCorp Vault</span><span>AWS IAM / IRSA</span><span>Kafka ACLs</span>
@@ -198,10 +202,11 @@
     <h3>Ingress Modernisation — NGINX to HAProxy</h3>
     <p class="meta">Infrastructure lead · 2026 · Multi-cluster, adopted beyond my own team</p>
     <p>
-      Designed a zero-downtime cutover with a deliberate escape hatch: rollback is a configuration
-      change that completes in under a minute — no infrastructure apply, no DNS change. Packaged as
-      versioned Terraform modules and a self-service runbook that three teams outside my own
-      adopted, and delivered to production alongside a major cluster version upgrade.
+      I designed the cutover so that going back was cheap. Rolling back is a configuration change that
+      finishes in under a minute, with no infrastructure apply and no DNS change. I packaged the whole
+      migration as versioned Terraform modules with a runbook teams could follow on their own, and
+      multiple teams across the organisation picked it up. It reached production alongside a major
+      cluster version upgrade.
     </p>
     <div class="stack">
       <span>HAProxy</span><span>Kubernetes ingress</span><span>Terraform</span>
@@ -213,11 +218,12 @@
     <h3>Zero-Downtime Deploys, Fleet-Wide</h3>
     <p class="meta">One fix in the shared chart · 2026 · every consuming team</p>
     <p>
-      Rollout defaults retire old pods on a fixed delay, which can cut off requests still in flight —
-      a failure mode that never trips an alert, so it goes unnoticed. I measured the real shutdown
-      timing per service and set it in the shared chart rather than service by service, so every
-      consuming team inherited it, then hardened two related resilience settings in the same pass.
-      Confirmed by controlled load testing rather than by the absence of alerts.
+      Rollouts retire old pods on a fixed delay. If that delay is shorter than a service needs to
+      finish what it's holding, requests get cut off mid-flight — and nothing alerts on it, so it
+      carries on unnoticed. I measured how long each service actually took to shut down and set the
+      timing in the shared chart rather than service by service, so every team using that chart got
+      the fix without doing anything. I confirmed it with controlled load testing rather than trusting
+      a quiet alert channel.
     </p>
     <div class="stack">
       <span>Argo Rollouts</span><span>Helm</span><span>Kubernetes probes</span>
@@ -229,19 +235,19 @@
     <h3>Fleet Capacity, Cost &amp; Node Provisioning</h3>
     <p class="meta">Infrastructure lead · 2024–2026 · multiple clusters, 15+ services</p>
     <p>
-      Replaced a third-party node provisioner with the CNCF-standard autoscaler across the fleet,
-      staged over five months with production left to soak. The driver wasn't cost: it took a
-      third-party dependency out of the cluster-provisioning critical path in favour of a
-      CNCF-standard tool. Node pools designed explicitly — interruptible capacity for general
-      workloads, reserved for critical ones — alongside the managed Kubernetes upgrades these
-      clusters rode on, run under change control including for a vertical outside my own team.
+      I replaced a third-party node provisioner with the CNCF-standard autoscaler, one environment at
+      a time over five months, leaving production to soak before finishing. The reason wasn't cost — it
+      was getting a third-party dependency out of the path every cluster depends on for capacity. I
+      designed the node pools deliberately rather than by default: cheap interruptible capacity for
+      ordinary workloads, reserved capacity held back for the ones that can't tolerate an eviction.
+      Those same clusters were going through managed Kubernetes upgrades at the time, which I ran
+      under change control, including for a product vertical outside my own team.
     </p>
     <p>
-      On the workload side: hybrid autoscaling — schedules for predictable load, metrics as the safety
-      net — CPU and memory right-sized from production telemetry, and cross-zone transfer cut with
-      topology-aware routing. Off-hours non-production cost fell by roughly two thirds, though I
-      reverted savings on several business-critical services before merge once load analysis showed
-      peak-event demand needed the headroom.
+      On the workload side I introduced hybrid autoscaling: schedules handle the load we can predict,
+      metrics catch the load we can't. Off-hours non-production cost fell by roughly two thirds — though
+      I reverted the savings on several business-critical services before merge, once the load analysis
+      showed they needed that headroom for peak events.
     </p>
     <div class="stack">
       <span>Karpenter</span><span>KEDA</span><span>HPA</span><span>Amazon EKS</span>
@@ -254,14 +260,16 @@
     <h3>Event-Driven Serverless Platform</h3>
     <p class="meta">Infrastructure &amp; observability owner · 2023 · greenfield build</p>
     <p>
-      Owned all infrastructure and observability for a greenfield, serverless-first product: one
-      function per bounded context, a NoSQL system of record with change streams and cross-region
-      replication, managed end-user identity, event fan-out across a message bus, streams and queues,
-      and dedicated audit-trail services for regulatory requirements.
+      A greenfield product, built serverless-first, and I owned all of its infrastructure and
+      observability. Each part of the domain got its own function rather than sharing a service. A
+      NoSQL store held the system of record, streamed its changes out, and replicated across regions.
+      Events fanned out through a message bus, streams and queues, and separate audit-trail services
+      recorded what happened for regulatory purposes.
     </p>
     <p>
-      Wrote its Terraform from an empty account, consolidated logging onto one observability platform,
-      and designed the monitors — including separating production paging from non-production noise.
+      I wrote its Terraform from an empty AWS account, moved its logging onto a single observability
+      platform, and designed the monitors — including splitting production paging away from
+      non-production noise, so a page at night meant something.
     </p>
     <div class="stack">
       <span>AWS Lambda</span><span>DynamoDB</span><span>Kinesis</span><span>SQS</span>
@@ -273,17 +281,17 @@
     <h3>Data Centre to AWS — the Platform's First Migration</h3>
     <p class="meta">DevOps engineer · DXC Technology · 2019–2020 · 113 services</p>
     <p>
-      Moved an auction platform out of its own data centre:
-      VPCs, subnets, gateways and DNS defined in CloudFormation across two regions and four
-      availability zones, then four managed Kubernetes clusters — development through production plus
-      disaster recovery — built the same way.
+      This was the migration that took an auction platform out of its own data centre and onto AWS. I
+      defined the networking in CloudFormation — the VPCs, subnets, gateways and DNS — across two
+      regions and four availability zones, then built four managed Kubernetes clusters the same way,
+      covering development through production plus disaster recovery.
     </p>
     <p>
-      Migrated 113 microservices off the incumbent orchestrator and built the delivery system that
-      carried them: template-built CI with ephemeral workers, a parameterised pipeline from code pull
-      through test, image build and deploy, release charts, and rollback, scale and image-tagging
-      jobs. Instrumented every service for monitoring, and wrote the runbook the platform team
-      inherited.
+      113 microservices came off the incumbent orchestrator, and I built the delivery system that
+      carried them across: continuous integration rebuildable from templates and running on ephemeral
+      workers, and a single parameterised pipeline that pulled the code, ran the tests, built the image
+      and deployed it. I instrumented every service for monitoring, and wrote the runbook the platform
+      team inherited.
     </p>
     <div class="stack">
       <span>AWS</span><span>Amazon EKS</span><span>CloudFormation</span><span>Jenkins</span>
@@ -292,40 +300,46 @@
   </div>
 </section>
 
+<section id="notes">
+  <h2>Notes</h2>
+  <p>Three things that cost me time, in case they cost someone else less.</p>
+  <dl class="skills">
+    <dt>Topology-aware routing is not a switch</dt>
+    <dd>
+      It needs three ready endpoints in <em>every</em> zone and zone-labelled nodes. Below that, the
+      annotation is accepted and silently does nothing — so check the EndpointSlice, not your config.
+    </dd>
+    <dt>DynamoDB billing mode cannot change on a replicated table</dt>
+    <dd>
+      Replicas off, mode changed, replicas back — and because Terraform declares both in one resource,
+      that is three deliberate applies rather than one.
+    </dd>
+    <dt>Scheduled and metric autoscaling together: max wins</dt>
+    <dd>
+      The highest trigger wins, so a schedule sets the floor and metrics react above it. But min and
+      max always bind, and KEDA quietly reverts hand-edits to the HPA it owns.
+    </dd>
+  </dl>
+</section>
+
 <section>
   <h2>Experience</h2>
   <dl class="skills">
     <dt>CoStar Group — Senior DevOps Engineer</dt>
-    <dd>
-      August 2021 – Present · the .NET re-platform, the secrets and access substrate, ingress
-      modernisation, rollout reliability, the serverless build, and fleet capacity and node
-      provisioning
-    </dd>
+    <dd>August 2021 – Present · every project here except the data centre migration</dd>
     <dt>DXC Technology — Cloud DevOps Engineer, then Re-Hosting Capability Lead</dt>
     <dd>
       February 2019 – August 2021 · cloud modernisation and application migration for enterprise
       clients across AWS and Azure, including the data centre to AWS migration
     </dd>
     <dt>TNP Systems — DevOps Engineer</dt>
-    <dd>
-      July 2018 – February 2019 · cloud automation, container-based CI/CD pipelines and
-      infrastructure provisioning workflows
-    </dd>
+    <dd>July 2018 – February 2019 · cloud automation and container-based CI/CD</dd>
     <dt>Eastern Illinois University — IT Technical Associate, DevOps</dt>
-    <dd>
-      November 2017 – July 2018 · automated build, test and deployment workflows, and IAM practices
-      following least privilege
-    </dd>
+    <dd>November 2017 – July 2018 · build and deployment automation, least-privilege IAM</dd>
     <dt>Illinois Department of Human Services — Graduate Public Service Intern</dt>
-    <dd>
-      August 2016 – June 2017 · CI/CD automation and deployment workflows in Python, Jenkins and
-      Docker
-    </dd>
+    <dd>August 2016 – June 2017 · CI/CD automation in Python, Jenkins and Docker</dd>
     <dt>Dark Horse Digital Solutions — Software Consultant Intern</dt>
-    <dd>
-      January 2015 – March 2015 · web-based workflow automation for insurance policy management on a
-      BPM platform
-    </dd>
+    <dd>January 2015 – March 2015</dd>
   </dl>
 </section>
 
@@ -333,11 +347,14 @@
   <h2>Education</h2>
   <dl class="skills">
     <dt>University of the Cumberlands — Ph.D., Information Technology</dt>
-    <dd>August 2020 – February 2026 · research on AI adoption in organisations</dd>
+    <dd>
+      August 2020 – February 2026 · dissertation on the adoption of AI to enhance organisational
+      performance in the US real estate industry
+    </dd>
     <dt>University of Illinois Springfield — M.S., Computer Science</dt>
     <dd>January 2016 – July 2017</dd>
     <dt>Geethanjali College of Engineering and Technology — B.S., Information Technology</dt>
-    <dd>2011 – 2015</dd>
+    <dd>August 2011 – May 2015</dd>
   </dl>
 </section>
 
@@ -372,7 +389,10 @@
 </section>
 
 <footer>
-  <p>Built as a static page — no trackers, no analytics.</p>
+  <p>
+    A static page with no trackers.
+    <a href="https://github.com/Dinesh94g/Dinesh94g.github.io" rel="noopener">Source on GitHub</a>.
+  </p>
 </footer>
 
 </div>
