@@ -122,7 +122,8 @@
     .project, .metric, dt, dd{break-inside:avoid}
     a{text-decoration:none}
     .links a[href^="http"]::after{content:" (" attr(href) ")"; font-size:8pt; color:#333}
-    footer{display:none}
+    footer{padding:8pt 0 0; font-size:8pt}
+    footer .colophon{display:none}
   }
 </style>
 </head>
@@ -148,14 +149,15 @@
     Most of my work is migration on systems that can't go down: fifteen services from Java to .NET,
     the ingress layer across production clusters, how the fleet gets its nodes. Earlier, a greenfield
     serverless product built from an empty AWS account, and before that the migration that first put
-    this platform on managed Kubernetes. Two principles throughout — make a risky change cheap to
-    undo, and prove a fix worked rather than assert it.
+    this platform on managed Kubernetes. Two principles held throughout — make a risky change cheap
+    to undo, and prove a fix worked rather than assert it. What lasted is the leverage: the fixes
+    went into the shared chart and the versioned modules, so the teams after me inherited them
+    instead of rediscovering them.
   </p>
   <p>
-    My doctorate examined how US real-estate organizations adopt AI to improve performance, the same
-    industry I build infrastructure for. It points at where I want to go next: platforms that carry
-    AI and ML workloads without giving up the reliability and cost discipline the rest of the estate
-    runs on.
+    Alongside that platform work I completed a doctorate examining how US real-estate organizations
+    adopt AI to improve performance — the same industry I have spent seven years building
+    infrastructure for.
   </p>
 </section>
 
@@ -175,8 +177,8 @@
       <span class="l">To roll back a production ingress change, with no infrastructure apply and no DNS change</span>
     </div>
     <div class="metric">
-      <span class="n">67%</span>
-      <span class="l">Off-hours non-production compute cost removed via autoscaling</span>
+      <span class="n">Autoscaling</span>
+      <span class="l">Off-hours non-production compute cost cut substantially, via scheduled and metric-driven autoscaling</span>
     </div>
   </div>
 </section>
@@ -187,7 +189,7 @@
 
   <div class="project">
     <h3>Java-to-.NET Platform Migration</h3>
-    <p class="meta">Infrastructure owner · 2025–2026 · 15 microservices, 4 environments</p>
+    <p class="meta">Senior DevOps Engineer · 2025–2026 · 15 microservices, 4 environments</p>
     <p>
       Owned every infrastructure layer under a live transaction platform's rewrite: the build and
       release pipelines, the Kubernetes deployments and mesh routing, runtime secrets, and the
@@ -205,7 +207,7 @@
 
   <div class="project">
     <h3>Secrets and Access Layer for a New Service Fleet</h3>
-    <p class="meta">Infrastructure owner · 2025–2026 · 15 services, 4 environments</p>
+    <p class="meta">Senior DevOps Engineer · 2025–2026 · 15 services, 4 environments</p>
     <p>
       Every service in the new fleet needed the same handful of things before it could start, and none
       of them existed yet. I built that layer: secrets pulled from a central vault at runtime instead
@@ -223,7 +225,7 @@
 
   <div class="project">
     <h3>Ingress Modernization: NGINX to HAProxy</h3>
-    <p class="meta">Infrastructure lead · 2026 · multi-cluster, adopted beyond my own team</p>
+    <p class="meta">Senior DevOps Engineer · 2026 · multi-cluster</p>
     <p>
       I designed the cutover so that going back was cheap: rolling back is a configuration change that
       finishes in under a minute, with no infrastructure apply and no DNS change. I packaged the
@@ -239,7 +241,7 @@
 
   <div class="project">
     <h3>Zero-Downtime Deploys, Fleet-Wide</h3>
-    <p class="meta">One fix in the shared chart · 2026 · every consuming team</p>
+    <p class="meta">Senior DevOps Engineer · 2026 · shared chart, every consuming team</p>
     <p>
       Rollouts retire old pods on a fixed delay. If that delay is shorter than a service needs to
       finish what it's holding, requests get cut off mid-flight — and nothing alerts on it, so it
@@ -256,7 +258,7 @@
 
   <div class="project">
     <h3>Fleet Capacity, Cost &amp; Node Provisioning</h3>
-    <p class="meta">Infrastructure lead · 2024–2026 · multiple clusters, 15+ services</p>
+    <p class="meta">Senior DevOps Engineer · 2024–2026 · multiple clusters, 15+ services</p>
     <p>
       I replaced a third-party node provisioner with the CNCF-standard autoscaler, one environment at a
       time over five months, leaving production to soak before finishing. The reason wasn't cost — it
@@ -268,9 +270,9 @@
     </p>
     <p>
       On the workload side I introduced hybrid autoscaling: schedules handle the load we can predict,
-      metrics catch the load we can't. Off-hours non-production cost fell by roughly two thirds —
-      though I reverted the savings on several business-critical services before merge, once the load
-      analysis showed they needed that headroom for peak events.
+      metrics catch the load we can't. Off-hours non-production cost fell substantially — though I
+      reverted the savings on several business-critical services before merge, once the load analysis
+      showed they needed that headroom for peak events.
     </p>
     <div class="stack">
       <span>Karpenter</span><span>KEDA</span><span>HPA</span><span>Amazon EKS</span>
@@ -281,7 +283,7 @@
 
   <div class="project">
     <h3>Event-Driven Serverless Platform</h3>
-    <p class="meta">Infrastructure &amp; observability owner · 2023 · greenfield build</p>
+    <p class="meta">Senior DevOps Engineer · 2023 · greenfield build</p>
     <p>
       A greenfield product, built serverless-first, where I owned all of the infrastructure and
       observability. Each part of the domain got its own function rather than sharing a service; a
@@ -300,7 +302,7 @@
 
   <div class="project">
     <h3>Data Center to AWS: the Platform's First Migration</h3>
-    <p class="meta">DevOps engineer · DXC Technology · 2019–2020 · 113 services</p>
+    <p class="meta">DevOps Engineer · DXC Technology · 2019–2020 · 113 services</p>
     <p>
       The migration that took an auction platform out of its own data center and onto AWS. I defined
       the VPCs, subnets, gateways and DNS in CloudFormation across two regions and four availability
@@ -404,7 +406,10 @@
 </section>
 
 <footer>
-  <p>
+  <p class="disclaimer">
+    The views expressed on this site are my own and do not necessarily reflect those of CoStar Group.
+  </p>
+  <p class="colophon">
     A static page with no trackers.
     <a href="https://github.com/Dinesh94g/Dinesh94g.github.io" rel="noopener">Source on GitHub</a>.
   </p>
