@@ -5,9 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Dinesh Gurajada, Ph.D. — Senior DevOps Engineer</title>
 <meta name="description" content="Senior DevOps Engineer specializing in Kubernetes, AWS and large-scale production migrations.">
+<link rel="canonical" href="https://dinesh94g.github.io/">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0f1216" media="(prefers-color-scheme: dark)">
 <meta property="og:title" content="Dinesh Gurajada, Ph.D. — Senior DevOps Engineer">
 <meta property="og:description" content="Senior DevOps Engineer specializing in Kubernetes, AWS and large-scale production migrations.">
 <meta property="og:type" content="profile">
+<meta property="og:url" content="https://dinesh94g.github.io/">
+<meta property="og:image" content="https://dinesh94g.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Dinesh Gurajada, Ph.D. — Senior DevOps Engineer, Platform &amp; Reliability">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⎈</text></svg>">
 <style>
   :root{
@@ -122,6 +131,7 @@
     .project, .metric, dt, dd{break-inside:avoid}
     a{text-decoration:none}
     .links a[href^="http"]::after{content:" (" attr(href) ")"; font-size:8pt; color:#333}
+    .links a[data-print]::after{content:" (" attr(data-print) ")"; font-size:8pt; color:#333}
     footer{padding:8pt 0 0; font-size:8pt}
     footer .colophon{display:none}
   }
@@ -134,8 +144,9 @@
   <h1>Dinesh Gurajada, Ph.D.</h1>
   <p class="role">Senior DevOps Engineer · Platform &amp; Reliability</p>
   <nav class="links">
-    <a href="mailto:dinesh94g@gmail.com">Email</a>
+    <a href="mailto:dinesh94g@gmail.com" data-print="dinesh94g@gmail.com">Email</a>
     <a href="https://www.linkedin.com/in/dinesh-gurajada" rel="me noopener">LinkedIn</a>
+    <a href="https://github.com/Dinesh94g" rel="me noopener">GitHub</a>
   </nav>
 </header>
 
@@ -156,8 +167,8 @@
   </p>
   <p>
     Alongside that platform work I completed a doctorate examining how US real-estate organizations
-    adopt AI to improve performance — the same industry I have spent seven years building
-    infrastructure for.
+    adopt AI to improve performance — the same industry I have been building infrastructure for
+    since 2019.
   </p>
 </section>
 
@@ -224,6 +235,24 @@
   </div>
 
   <div class="project">
+    <h3>Vulnerability Management Across the Cloud Estate</h3>
+    <p class="meta">Senior DevOps Engineer · 2025–present · multiple AWS accounts</p>
+    <p>
+      Container and host findings arrive faster than any team can patch them, so the work is triage
+      rather than volume. I ran recurring posture reviews across every account in the estate and
+      ranked findings by whether the vulnerable path was actually reachable in a running workload,
+      not by raw severity score — which is what turns a report nobody reads into a short list a team
+      will act on. Each one went to the team that owned the image, with the upgrade already
+      identified. The fixes that kept recurring went into base images and shared chart defaults, so
+      whole classes of finding stopped appearing on the next cycle's report.
+    </p>
+    <div class="stack">
+      <span>Cloud security posture management</span><span>Container image scanning</span>
+      <span>CVE triage</span><span>AWS IAM</span><span>Kubernetes</span>
+    </div>
+  </div>
+
+  <div class="project">
     <h3>Ingress Modernization: NGINX to HAProxy</h3>
     <p class="meta">Senior DevOps Engineer · 2026 · multi-cluster</p>
     <p>
@@ -253,6 +282,30 @@
     <div class="stack">
       <span>Argo Rollouts</span><span>Helm</span><span>Kubernetes probes</span>
       <span>Load testing</span>
+    </div>
+  </div>
+
+  <div class="project">
+    <h3>Drift Detection and On-Call Tooling</h3>
+    <p class="meta">Senior DevOps Engineer · 2026 · Terraform estate, platform on-call</p>
+    <p>
+      Infrastructure code only tells the truth when someone runs it. Between runs, console edits and
+      out-of-band changes accumulate quietly, until an unrelated apply picks them up and does
+      something nobody asked for. I built a scheduled check that plans every workspace, reports what
+      no longer matches the code, and routes the result to the owning team. I rolled it out by module
+      type rather than all at once, starting where the signal was clean and adding the noisier
+      resource types as I tuned the false positives out — a drift report people learn to ignore is
+      worse than no report at all.
+    </p>
+    <p>
+      The same instinct applied to on-call. The weekly handoff was manual and easy to miss, so I
+      automated it end to end: the rotation is generated as a standards-compliant calendar feed
+      engineers can subscribe to, and the handoff notice posts itself to the team channel on a
+      schedule, naming who is on and who is next.
+    </p>
+    <div class="stack">
+      <span>Terraform</span><span>Azure DevOps Pipelines</span><span>Python</span>
+      <span>PagerDuty</span><span>Scheduled automation</span>
     </div>
   </div>
 
@@ -397,6 +450,11 @@
       HashiCorp Vault, Apache Kafka / Confluent, Jenkins, Docker, Linux, Bash, Python, Akamai CDN
       configuration
     </dd>
+    <dt>Security</dt>
+    <dd>
+      Cloud security posture management, container and host vulnerability triage, secrets management,
+      workload identity and least-privilege IAM, infrastructure drift detection
+    </dd>
     <dt>Certifications</dt>
     <dd>
       Certified Kubernetes Administrator (CKA) · AWS Certified SysOps Administrator ·
@@ -416,5 +474,33 @@
 </footer>
 
 </div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Dinesh Gurajada",
+  "honorificSuffix": "Ph.D.",
+  "jobTitle": "Senior DevOps Engineer",
+  "url": "https://dinesh94g.github.io/",
+  "image": "https://dinesh94g.github.io/og.png",
+  "email": "mailto:dinesh94g@gmail.com",
+  "description": "Senior DevOps Engineer specializing in Kubernetes, AWS and large-scale production migrations.",
+  "worksFor": { "@type": "Organization", "name": "CoStar Group" },
+  "sameAs": [
+    "https://www.linkedin.com/in/dinesh-gurajada",
+    "https://github.com/Dinesh94g"
+  ],
+  "alumniOf": [
+    { "@type": "CollegeOrUniversity", "name": "University of the Cumberlands" },
+    { "@type": "CollegeOrUniversity", "name": "University of Illinois Springfield" },
+    { "@type": "CollegeOrUniversity", "name": "Geethanjali College of Engineering and Technology" }
+  ],
+  "knowsAbout": [
+    "Kubernetes", "Amazon Web Services", "Terraform", "Site Reliability Engineering",
+    "Platform Engineering", "Infrastructure as Code", "Cloud Migration", "Observability"
+  ]
+}
+</script>
 </body>
 </html>
