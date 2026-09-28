@@ -76,6 +76,7 @@
   .project h3{font-size:1.1rem; margin:0 0 4px; font-weight:660; letter-spacing:-.01em}
   .meta{font-size:.84rem; color:var(--muted); margin:0 0 11px}
   .project p{margin:0 0 11px}
+  .project .outcome{font-weight:600}
   .stack{display:flex; flex-wrap:wrap; gap:6px; margin-top:13px}
   .stack span{
     font-size:.76rem; background:var(--chip-bg); border:1px solid var(--line);
@@ -152,22 +153,14 @@
 <section>
   <h2>About</h2>
   <p class="lead">
-    I build and run the infrastructure behind CoStar Group's commercial real-estate auction
-    platform — Kubernetes, AWS, and the delivery pipelines that put code in front of bidders.
+    I am a Senior DevOps Engineer at CoStar Group. I run the Kubernetes, AWS and CI/CD
+    infrastructure for the company's commercial real-estate auction platform.
   </p>
   <p>
-    Most of my work is migration on systems that can't go down: fifteen services from Java to .NET,
-    the ingress layer across production clusters, how the fleet gets its nodes. Earlier, a greenfield
-    serverless product built from an empty AWS account, and before that the migration that first put
-    this platform on managed Kubernetes. Two principles held throughout — make a risky change cheap
-    to undo, and prove a fix worked rather than assert it. What lasted is the leverage: the fixes
-    went into the shared chart and the versioned modules, so the teams after me inherited them
-    instead of rediscovering them.
-  </p>
-  <p>
-    Alongside that platform work I completed a doctorate examining how US real-estate organizations
-    adopt AI to improve performance — the same industry I have been building infrastructure for
-    since 2019.
+    Most of my work is migrating production systems with no downtime. I plan every change with a
+    fast rollback, and I test each fix before I call it done. I build fixes into shared Helm charts
+    and Terraform modules so other teams can reuse them. I also hold a Ph.D. in Information
+    Technology. My research studied how US real-estate companies adopt AI.
   </p>
 </section>
 
@@ -176,217 +169,134 @@
   <div class="metrics">
     <div class="metric">
       <span class="n">15 services</span>
-      <span class="l">Live transaction platform rewritten across 4 environments and launched on schedule</span>
+      <span class="l">Migrated from Java to .NET across 4 environments, on schedule</span>
     </div>
     <div class="metric">
       <span class="n">Zero</span>
-      <span class="l">Long-lived static credentials left in the runtime path, after moving access to IAM roles</span>
+      <span class="l">Static passwords in the new services, after moving access to IAM roles</span>
     </div>
     <div class="metric">
       <span class="n">&lt; 1 min</span>
-      <span class="l">To roll back a production ingress change, with no infrastructure apply and no DNS change</span>
+      <span class="l">Rollback time for a production ingress change</span>
     </div>
     <div class="metric">
-      <span class="n">Autoscaling</span>
-      <span class="l">Off-hours non-production compute cost cut substantially, via scheduled and metric-driven autoscaling</span>
+      <span class="n">113 services</span>
+      <span class="l">Moved from a data center to AWS and Kubernetes</span>
     </div>
   </div>
 </section>
 
 <section>
   <h2>Selected Work</h2>
-  <p class="meta">Ordered by impact, not date.</p>
 
   <div class="project">
     <h3>Java-to-.NET Platform Migration</h3>
-    <p class="meta">Senior DevOps Engineer · 2025–2026 · 15 microservices, 4 environments</p>
+    <p class="meta">2025–2026 · 15 microservices, 4 environments</p>
+    <p class="outcome">Delivered on schedule with no static passwords in the new services.</p>
     <p>
-      Owned every infrastructure layer under a live transaction platform's rewrite: the build and
-      release pipelines, the Kubernetes deployments and mesh routing, runtime secrets, and the
-      database changes that had to land alongside the code. I wrote the promotion gates and rollback
-      playbooks, and built the Akamai-edge maintenance window that carried the cutover, rehearsing it
-      in test before running it in production. The first services wouldn't build at all; once I found
-      why, I turned the fix into a written convention rather than a one-off repair, so the second wave
-      cost a fraction of the first. We shipped on schedule.
+      I owned the infrastructure for the full rewrite: build and release pipelines, Kubernetes
+      deployments, Istio routing, secrets and database changes. Services read secrets from Vault at
+      startup and access AWS through IAM roles. I wrote the promotion gates and rollback steps. I
+      also set up an Akamai maintenance page for the cutover and tested it in a lower environment
+      first. When the first services failed to build, I documented the fix as a standard, and the
+      next group of services moved much faster.
     </p>
     <div class="stack">
-      <span>Kubernetes / EKS</span><span>Helm</span><span>Istio</span><span>Argo Rollouts</span>
-      <span>HashiCorp Vault</span><span>Kafka</span><span>Akamai</span><span>.NET</span>
+      <span>Amazon EKS</span><span>Helm</span><span>Istio</span><span>Argo Rollouts</span>
+      <span>HashiCorp Vault</span><span>AWS IAM / IRSA</span><span>Kafka</span><span>Akamai</span>
     </div>
   </div>
 
   <div class="project">
-    <h3>Secrets and Access Layer for a New Service Fleet</h3>
-    <p class="meta">Senior DevOps Engineer · 2025–2026 · 15 services, 4 environments</p>
+    <h3>Ingress Migration: NGINX to HAProxy</h3>
+    <p class="meta">2026 · multiple clusters</p>
+    <p class="outcome">Rollback in under a minute. Several teams across the company now use it.</p>
     <p>
-      Every service in the new fleet needed the same handful of things before it could start, and none
-      of them existed yet. I built that layer: secrets pulled from a central vault at runtime instead
-      of baked into images, cache and database access granted through workload IAM roles instead of
-      static passwords, message-bus credentials issued per service, and schema changes shipped through
-      a gated pipeline rather than by hand. What lasted was taking long-lived static credentials out of
-      the runtime path altogether — access became role-based and auditable, and standing up a new
-      service turned into a checklist anyone could follow.
+      I designed the migration so a rollback is a single configuration change, with no Terraform
+      apply and no DNS change. I delivered it as versioned Terraform modules with a runbook, so
+      other teams could adopt it on their own. It went to production together with a major EKS
+      version upgrade.
     </p>
     <div class="stack">
-      <span>HashiCorp Vault</span><span>AWS IAM / IRSA</span><span>Kafka ACLs</span>
-      <span>Azure DevOps Pipelines</span><span>Helm</span>
+      <span>HAProxy</span><span>Terraform</span><span>Argo CD</span><span>Helm</span>
     </div>
   </div>
 
   <div class="project">
-    <h3>Vulnerability Management Across the Cloud Estate</h3>
-    <p class="meta">Senior DevOps Engineer · 2025–present · multiple AWS accounts</p>
+    <h3>Zero-Downtime Deployments</h3>
+    <p class="meta">2026 · shared Helm chart used by all teams</p>
+    <p class="outcome">Fixed dropped requests during deployments for every service on the shared chart.</p>
     <p>
-      Container and host findings arrive faster than any team can patch them, so the work is triage
-      rather than volume. I ran recurring posture reviews across every account in the estate and
-      ranked findings by whether the vulnerable path was actually reachable in a running workload,
-      not by raw severity score — which is what turns a report nobody reads into a short list a team
-      will act on. Each one went to the team that owned the image, with the upgrade already
-      identified. The fixes that kept recurring went into base images and shared chart defaults, so
-      whole classes of finding stopped appearing on the next cycle's report.
+      During rollouts, some pods shut down before they finished their open requests. No alert
+      caught this. I measured how long each service needed to shut down, set the correct timing in
+      the shared Helm chart, and confirmed the fix with load tests.
     </p>
     <div class="stack">
-      <span>Cloud security posture management</span><span>Container image scanning</span>
-      <span>CVE triage</span><span>AWS IAM</span><span>Kubernetes</span>
+      <span>Argo Rollouts</span><span>Helm</span><span>Kubernetes probes</span><span>Load testing</span>
     </div>
   </div>
 
   <div class="project">
-    <h3>Ingress Modernization: NGINX to HAProxy</h3>
-    <p class="meta">Senior DevOps Engineer · 2026 · multi-cluster</p>
+    <h3>Cluster Autoscaling and Cost</h3>
+    <p class="meta">2024–2026 · multiple clusters, 15+ services</p>
+    <p class="outcome">Cut average non-production node count by 20–25%, and replaced a third-party node provisioner with Karpenter.</p>
     <p>
-      I designed the cutover so that going back was cheap: rolling back is a configuration change that
-      finishes in under a minute, with no infrastructure apply and no DNS change. I packaged the
-      migration as versioned Terraform modules with a runbook teams could follow on their own, and
-      multiple teams across the organization picked it up. It reached production alongside a major
-      cluster version upgrade.
+      I moved each environment to Karpenter one at a time over five months. Normal workloads run on
+      spot instances, and critical workloads run on on-demand instances. I added KEDA so services
+      scale on a schedule for known traffic and on metrics for the rest. I kept extra capacity on
+      business-critical services that need it for peak auction events.
     </p>
     <div class="stack">
-      <span>HAProxy</span><span>Kubernetes ingress</span><span>Terraform</span>
-      <span>Argo CD</span><span>Helm</span>
+      <span>Karpenter</span><span>KEDA</span><span>HPA</span><span>Amazon EKS</span><span>Terraform</span>
     </div>
   </div>
 
   <div class="project">
-    <h3>Zero-Downtime Deploys, Fleet-Wide</h3>
-    <p class="meta">Senior DevOps Engineer · 2026 · shared chart, every consuming team</p>
+    <h3>Vulnerability Management and Drift Detection</h3>
+    <p class="meta">2025–present · multiple AWS accounts</p>
+    <p class="outcome">Gave each team a short, prioritized list of fixes for the images they own.</p>
     <p>
-      Rollouts retire old pods on a fixed delay. If that delay is shorter than a service needs to
-      finish what it's holding, requests get cut off mid-flight — and nothing alerts on it, so it
-      carries on unnoticed. I measured how long each service actually took to shut down and set the
-      timing in the shared chart rather than service by service, so every team using that chart got the
-      fix without doing anything. I confirmed it with controlled load testing rather than trusting a
-      quiet alert channel.
+      I review security findings across all AWS accounts. I rank them by whether a running workload
+      can actually be exploited, not only by severity score. Each team gets its findings with the
+      required upgrade. Common fixes go into base images and shared chart defaults. I also built a
+      nightly pipeline that runs Terraform plan on every workspace and reports drift to the owning
+      team.
     </p>
     <div class="stack">
-      <span>Argo Rollouts</span><span>Helm</span><span>Kubernetes probes</span>
-      <span>Load testing</span>
+      <span>Cloud security posture management</span><span>Container scanning</span><span>Terraform</span><span>Azure DevOps Pipelines</span>
     </div>
   </div>
 
   <div class="project">
-    <h3>Drift Detection and On-Call Tooling</h3>
-    <p class="meta">Senior DevOps Engineer · 2026 · Terraform estate, platform on-call</p>
+    <h3>Earlier Work</h3>
     <p>
-      Infrastructure code only tells the truth when someone runs it. Between runs, console edits and
-      out-of-band changes accumulate quietly, until an unrelated apply picks them up and does
-      something nobody asked for. I built a scheduled check that plans every workspace, reports what
-      no longer matches the code, and routes the result to the owning team. I rolled it out by module
-      type rather than all at once, starting where the signal was clean and adding the noisier
-      resource types as I tuned the false positives out — a drift report people learn to ignore is
-      worse than no report at all.
+      <strong>Serverless platform (2023).</strong> A new product built on Lambda, DynamoDB global
+      tables, Kinesis and SQS. I wrote all of the Terraform from a new AWS account. I also set up
+      monitoring so that only production issues page the on-call engineer.
     </p>
     <p>
-      The same instinct applied to on-call. The weekly handoff was manual and easy to miss, so I
-      automated it end to end: the rotation is generated as a standards-compliant calendar feed
-      engineers can subscribe to, and the handoff notice posts itself to the team channel on a
-      schedule, naming who is on and who is next.
+      <strong>Data center to AWS (DXC, 2019–2020).</strong> I built the network and four EKS clusters
+      with CloudFormation across two regions. I also built the CI/CD pipeline that moved 113
+      microservices to Kubernetes.
     </p>
-    <div class="stack">
-      <span>Terraform</span><span>Azure DevOps Pipelines</span><span>Python</span>
-      <span>PagerDuty</span><span>Scheduled automation</span>
-    </div>
-  </div>
-
-  <div class="project">
-    <h3>Fleet Capacity, Cost &amp; Node Provisioning</h3>
-    <p class="meta">Senior DevOps Engineer · 2024–2026 · multiple clusters, 15+ services</p>
-    <p>
-      I replaced a third-party node provisioner with the CNCF-standard autoscaler, one environment at a
-      time over five months, leaving production to soak before finishing. The reason wasn't cost — it
-      was getting a third-party dependency out of the path every cluster depends on for capacity. I
-      designed the node pools deliberately: cheap interruptible capacity for ordinary workloads,
-      reserved capacity held back for the ones that can't tolerate an eviction. Those same clusters
-      were going through managed Kubernetes upgrades at the time, which I ran under change control,
-      including for a product vertical outside my own team.
-    </p>
-    <p>
-      On the workload side I introduced hybrid autoscaling: schedules handle the load we can predict,
-      metrics catch the load we can't. Off-hours non-production cost fell substantially — though I
-      reverted the savings on several business-critical services before merge, once the load analysis
-      showed they needed that headroom for peak events.
-    </p>
-    <div class="stack">
-      <span>Karpenter</span><span>KEDA</span><span>HPA</span><span>Amazon EKS</span>
-      <span>Spot / on-demand</span><span>Topology-aware routing</span><span>Terraform</span>
-      <span>Datadog</span>
-    </div>
-  </div>
-
-  <div class="project">
-    <h3>Event-Driven Serverless Platform</h3>
-    <p class="meta">Senior DevOps Engineer · 2023 · greenfield build</p>
-    <p>
-      A greenfield product, built serverless-first, where I owned all of the infrastructure and
-      observability. Each part of the domain got its own function rather than sharing a service; a
-      NoSQL store held the system of record, streamed its changes out, and replicated across regions;
-      events fanned out through a message bus, streams and queues, with separate audit-trail services
-      recording what happened for regulatory purposes. I wrote its Terraform from an empty AWS account,
-      moved its logging onto a single observability platform, and designed the monitors — including
-      splitting production paging away from non-production noise, so that a page at night meant
-      something.
-    </p>
-    <div class="stack">
-      <span>AWS Lambda</span><span>DynamoDB</span><span>Kinesis</span><span>SQS</span>
-      <span>Cognito</span><span>Terraform</span><span>Datadog</span>
-    </div>
-  </div>
-
-  <div class="project">
-    <h3>Data Center to AWS: the Platform's First Migration</h3>
-    <p class="meta">DevOps Engineer · DXC Technology · 2019–2020 · 113 services</p>
-    <p>
-      The migration that took an auction platform out of its own data center and onto AWS. I defined
-      the VPCs, subnets, gateways and DNS in CloudFormation across two regions and four availability
-      zones, then built four managed Kubernetes clusters the same way, covering development through
-      production plus disaster recovery. 113 microservices came off the incumbent orchestrator, and I
-      built the delivery system that carried them across: continuous integration rebuildable from
-      templates and running on ephemeral workers, and a single parameterized pipeline that pulled the
-      code, ran the tests, built the image and deployed it. I instrumented every service for
-      monitoring, and wrote the runbook the platform team inherited.
-    </p>
-    <div class="stack">
-      <span>AWS</span><span>Amazon EKS</span><span>CloudFormation</span><span>Jenkins</span>
-      <span>Helm</span><span>Docker</span><span>Artifactory</span><span>Datadog</span>
-    </div>
   </div>
 </section>
 
 <section id="notes">
   <h2>Field Notes</h2>
-  <p>Three things that cost me time, in case they cost someone else less.</p>
+  <p>Three problems I ran into, and what fixed them.</p>
   <div class="notes">
     <div class="note">
-      <h3>Topology-aware routing is not a switch</h3>
-      <p>It needs three ready endpoints in <em>every</em> zone and zone-labeled nodes. Below that, the annotation is accepted and silently does nothing, so check the EndpointSlice rather than your config.</p>
+      <h3>Topology-aware routing has minimum requirements</h3>
+      <p>It needs at least three ready endpoints in each zone, and nodes must have zone labels. If not, Kubernetes accepts the setting but ignores it. Check the EndpointSlice to confirm it works.</p>
     </div>
     <div class="note">
-      <h3>DynamoDB billing mode cannot change on a replicated table</h3>
-      <p>Replicas off, mode changed, replicas back. Because Terraform declares both in one resource, that is three deliberate applies rather than one.</p>
+      <h3>You cannot change DynamoDB billing mode on a replicated table</h3>
+      <p>Remove the replicas, change the mode, then add the replicas back. Terraform manages both in one resource, so this takes three separate applies.</p>
     </div>
     <div class="note">
-      <h3>Scheduled and metric autoscaling together: max wins</h3>
-      <p>The highest trigger wins, so a schedule sets the floor and metrics react above it. But min and max always bind, and KEDA quietly reverts hand-edits to the HPA it owns.</p>
+      <h3>KEDA with schedule and metric triggers uses the highest value</h3>
+      <p>The schedule sets the minimum, and metrics scale above it. Min and max replicas still apply. KEDA also overwrites any manual edits to the HPA it manages.</p>
     </div>
   </div>
 </section>
@@ -395,70 +305,43 @@
   <h2>Experience</h2>
   <dl class="timeline">
     <dt>CoStar Group · Senior DevOps Engineer</dt>
-    <dd>August 2021 – Present · every project here except the data center migration</dd>
+    <dd>August 2021 – Present</dd>
     <dt>DXC Technology · Cloud DevOps Engineer, then Re-Hosting Capability Lead</dt>
-    <dd>
-      February 2019 – August 2021 · cloud modernization and application migration for enterprise
-      clients across AWS and Azure, including the data center to AWS migration
-    </dd>
+    <dd>February 2019 – August 2021 · cloud migration for enterprise clients on AWS and Azure</dd>
     <dt>TNP Systems · DevOps Engineer</dt>
-    <dd>July 2018 – February 2019 · cloud automation and container-based CI/CD</dd>
+    <dd>July 2018 – February 2019</dd>
     <dt>Eastern Illinois University · IT Technical Associate, DevOps</dt>
     <dd>November 2017 – July 2018 · build and deployment automation, least-privilege IAM</dd>
-    <dt>Illinois Department of Human Services · Graduate Public Service Intern</dt>
-    <dd>August 2016 – June 2017 · CI/CD automation in Python, Jenkins and Docker</dd>
-    <dt>Dark Horse Digital Solutions · Software Consultant Intern</dt>
-    <dd>January 2015 – March 2015</dd>
+    <dt>Internships</dt>
+    <dd>2015 – 2017 · Illinois Department of Human Services (Graduate Public Service Intern), Dark Horse Digital Solutions (Software Consultant Intern)</dd>
   </dl>
 </section>
 
 <section>
-  <h2>Education</h2>
+  <h2>Education &amp; Certifications</h2>
   <dl class="timeline">
-    <dt>University of the Cumberlands · Ph.D., Information Technology</dt>
-    <dd>
-      August 2020 – February 2026 · dissertation on the adoption of AI to enhance organizational
-      performance in the US real estate industry
-    </dd>
-    <dt>University of Illinois Springfield · M.S., Computer Science</dt>
-    <dd>January 2016 – July 2017</dd>
-    <dt>Geethanjali College of Engineering and Technology · B.S., Information Technology</dt>
-    <dd>August 2011 – May 2015 · affiliated with JNTU Hyderabad</dd>
+    <dt>Ph.D., Information Technology · University of the Cumberlands</dt>
+    <dd>2026 · dissertation on AI adoption in the US real estate industry</dd>
+    <dt>M.S., Computer Science · University of Illinois Springfield</dt>
+    <dd>2017</dd>
+    <dt>B.S., Information Technology · Geethanjali College of Engineering and Technology</dt>
+    <dd>2015</dd>
+    <dt>Certifications</dt>
+    <dd>CKA · AWS Certified SysOps Administrator · AWS Certified AI Practitioner</dd>
   </dl>
 </section>
 
 <section>
   <h2>Skills</h2>
   <dl class="skills">
-    <dt>Kubernetes</dt>
-    <dd>Amazon EKS, Helm, Istio, Argo Rollouts, Argo CD, Karpenter, KEDA, HPA</dd>
-    <dt>Cloud</dt>
-    <dd>
-      AWS (IAM, ElastiCache, RDS / Aurora, DynamoDB, Lambda, ALB, Route 53, S3, KMS), Microsoft
-      Azure
-    </dd>
-    <dt>Infrastructure as Code</dt>
-    <dd>Terraform, CloudFormation, Ansible, versioned module design, Azure DevOps Pipelines, GitOps</dd>
-    <dt>Reliability &amp; Observability</dt>
-    <dd>
-      Datadog, OpenTelemetry, Prometheus, Grafana, capacity planning, failure injection as code
-      (Terraform-managed DNS blackholes for dependency-loss drills)
-    </dd>
+    <dt>Kubernetes &amp; Cloud</dt>
+    <dd>Amazon EKS, Helm, Istio, Argo CD / Rollouts, Karpenter, KEDA · AWS, Azure</dd>
+    <dt>Infrastructure &amp; Delivery</dt>
+    <dd>Terraform, CloudFormation, Ansible, Azure DevOps Pipelines, Jenkins, GitOps</dd>
+    <dt>Reliability &amp; Security</dt>
+    <dd>Datadog, OpenTelemetry, Prometheus, Grafana, HashiCorp Vault, cloud security posture management, least-privilege IAM</dd>
     <dt>Platform</dt>
-    <dd>
-      HashiCorp Vault, Apache Kafka / Confluent, Jenkins, Docker, Linux, Bash, Python, Akamai CDN
-      configuration
-    </dd>
-    <dt>Security</dt>
-    <dd>
-      Cloud security posture management, container and host vulnerability triage, secrets management,
-      workload identity and least-privilege IAM, infrastructure drift detection
-    </dd>
-    <dt>Certifications</dt>
-    <dd>
-      Certified Kubernetes Administrator (CKA) · AWS Certified SysOps Administrator ·
-      AWS Certified AI Practitioner
-    </dd>
+    <dd>Kafka / Confluent, Docker, Linux, Bash, Python, Akamai CDN</dd>
   </dl>
 </section>
 
